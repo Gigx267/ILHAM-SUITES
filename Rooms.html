@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore our luxury 1-bedroom apartments at ILHAM SUITES in Abuja, Nigeria">
+    <title>Rooms & Suites | ILHAM SUITES | Luxury Service Apartments Abuja</title>
+    <link rel="icon" href="sa (2).jpg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B38B2D;
+            --ivory: #F8F4E9;
+            --charcoal: #333333;
+            --soft-gray: #E8E8E8;
+            --light-gray: #f8f8f8;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(248, 244, 233, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .main-nav a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle,
+        .menu-icon {
+            display: none;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            height: 50vh;
+            min-height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .page-banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .page-banner-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .page-banner-background::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+        
+        .page-banner-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 0 5%;
+        }
+        
+        .page-banner-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .page-breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 8rem 5%;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Rooms Intro */
+        .rooms-intro {
+            background-color: var(--light-gray);
+        }
+        
+        .rooms-intro-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .rooms-intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        /* Rooms Grid */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .room-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .room-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .room-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .room-card:hover .room-image img {
+            transform: scale(1.05);
+        }
+        
+        .room-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .room-content {
+            padding: 2rem;
+        }
+        
+        .room-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .room-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .room-feature i {
+            color: var(--gold);
+        }
+        
+        .room-description {
+            color: #777;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .room-pricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--soft-gray);
+        }
+        
+        .price-weekday {
+            text-align: center;
+        }
+        
+        .price-label {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .price-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .price-weekend {
+            text-align: center;
+        }
+        
+        .price-weekend .price-amount {
+            color: var(--gold);
+        }
+        
+        .price-save {
+            font-size: 0.8rem;
+            color: var(--dark-gold);
+            font-weight: 600;
+            margin-top: 0.3rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--gold);
+            color: white;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--dark-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+        
+        .cta-button:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .cta-button:hover {
+            color: white;
+        }
+        
+        .button-text {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Amenities Section */
+        .amenities-section {
+            background-color: var(--light-gray);
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .amenity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--soft-gray);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .amenity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .amenity-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .amenity-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .amenity-card p {
+            color: #777;
+            line-height: 1.6;
+        }
+        
+        /* Special Offer */
+        .special-offer {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: white;
+            text-align: center;
+            padding: 4rem 5%;
+            border-radius: 12px;
+            margin: 0 auto 2rem;
+            max-width: 1000px;
+        }
+        
+        .special-offer h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .special-offer p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .special-offer .cta-button {
+            background-color: white;
+            color: var(--gold);
+            width: auto;
+        }
+        
+        .special-offer .cta-button:hover {
+            background-color: var(--charcoal);
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--charcoal);
+            color: white;
+            padding: 3rem 5% 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo span {
+            color: var(--gold);
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #777;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            
+            .menu-icon .bar {
+                width: 25px;
+                height: 2px;
+                background-color: var(--charcoal);
+                margin: 5px 0;
+                transition: var(--transition);
+            }
+            
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--ivory);
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                padding-top: 80px;
+                z-index: 999;
+            }
+            
+            .menu-toggle:checked ~ .main-nav {
+                right: 0;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 0 2rem;
+            }
+            
+            .main-nav li {
+                margin-bottom: 1.5rem;
+            }
+            
+            .page-banner-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 5%;
+            }
+            
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 1rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .page-banner-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .room-pricing {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">ILHAM <span>SUITES</span></div>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </label>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="rooms.html" class="active">Rooms</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="amenities.html">Amenities</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="page-banner-background">
+            <img src="p (1).jpeg" alt="Luxury Bedroom">
+        </div>
+        <div class="page-banner-content">
+            <h1 class="page-banner-title">Our Rooms & Suites</h1>
+            <div class="page-breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Rooms</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Intro -->
+    <section class="section rooms-intro">
+        <div class="section-header">
+            <h2 class="section-title">Luxury One-Bedroom Apartments</h2>
+            <p class="section-subtitle">Experience premium comfort in our meticulously designed apartments</p>
+        </div>
+        
+        <div class="rooms-intro-wrapper">
+            <p class="rooms-intro-text">At ILHAM SUITES, we offer four beautifully appointed one-bedroom apartments, each designed to provide the perfect blend of luxury, comfort, and functionality. Whether you're visiting Abuja for business or leisure, our apartments offer a serene retreat where you can relax and rejuvenate.</p>
+            <p class="rooms-intro-text">Each apartment features a spacious bedroom, elegant living area, fully equipped kitchen, and modern bathroom, all furnished to the highest standards. Enjoy the convenience of estate living with 24-hour security and power supply.</p>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="section">
+        <div class="special-offer">
+            <h2>Weekend Special Offer</h2>
+            <p>Enjoy our luxury one-bedroom apartments at a special rate of ₦60,000 per night on weekends (Friday - Sunday). Save ₦10,000 off our regular weekday rate!</p>
+            <a href="contact.html" class="cta-button"><span class="button-text">Book Now & Save</span></a>
+        </div>
+    </section>
+
+    <!-- Rooms Grid -->
+    <section class="section">
+        <div class="rooms-grid">
+            <!-- Room 1 -->
+            <div class="room-card">
+                <div class="room-image">
+                    <img src="p (3).jpeg" alt="Luxury One-Bedroom Apartment">
+                    <div class="room-badge">Available</div>
+                </div>
+                <div class="room-content">
+                    <h3 class="room-title">Deluxe One-Bedroom Apartment</h3>
+                    
+                    <div class="room-features">
+                        <div class="room-feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bedroom</span>
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Up to 2 Guests</span>
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>650 sq.ft.</span>
+                        </div>
+                    </div>
+                    
+                    <p class="room-description">Spacious one-bedroom apartment featuring a comfortable king-size bed, elegant living area, and fully equipped kitchenette. Perfect for couples or solo travelers seeking luxury and privacy.</p>
+                    
+                    <div class="room-pricing">
+                        <div class="price-weekday">
+                            <div class="price-label">Weekday Rate</div>
+                            <div class="price-amount">₦70,000</div>
+                            <div class="price-label">(Mon - Thu)</div>
+                        </div>
+                        
+                        <div class="price-weekend">
+                            <div class="price-label">Weekend Special</div>
+                            <div class="price-amount">₦60,000</div>
+                            <div class="price-label">(Fri - Sun)</div>
+                            <div class="price-save">Save ₦10,000</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="cta-button"><span class="button-text">Book This Room</span></a>
+                </div>
+            </div>
+            
+            <!-- Room 2 -->
+            <div class="room-card">
+                <div class="room-image">
+                    <img src="p (2).jpeg" alt="Executive One-Bedroom Apartment">
+                    <div class="room-badge">Available</div>
+                </div>
+                <div class="room-content">
+                    <h3 class="room-title">Executive One-Bedroom Apartment</h3>
+                    
+                    <div class="room-features">
+                        <div class="room-feature">
+                            <i class="fas fa-bed"></i>
+                            <span>1 Bedroom</span>
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Up to 2 Guests</span>
+                        </div>
+                        <div class="room-feature">
+                            <i class="fas fa-ruler-combined"></i>
+                            <span>700 sq.ft.</span>
+                        </div>
+                    </div>
+                    
+                    <p class="room-description">Our executive apartment offers additional space with a separate dining area and enhanced amenities. Features premium furnishings and stunning views of the serene surroundings.</p>
+                    
+                    <div class="room-pricing">
+                        <div class="price-weekday">
+                            <div class="price-label">Weekday Rate</div>
+                            <div class="price-amount">₦70,000</div>
+                            <div class="price-label">(Mon - Thu)</div>
+                        </div>
+                        
+                        <div class="price-weekend">
+                            <div class="price-label">Weekend Special</div>
+                            <div class="price-amount">₦60,000</div>
+                            <div class="price-label">(Fri - Sun)</div>
+                            <div class="price-save">Save ₦10,000</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="cta-button"><span class="button-text">Book This Room</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="section amenities-section">
+        <div class="section-header">
+            <h2 class="section-title">Apartment Amenities</h2>
+            <p class="section-subtitle">Every apartment includes these premium amenities for your comfort</p>
+        </div>
+        
+        <div class="amenities-grid">
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-couch"></i>
+                </div>
+                <h3>Furnished Living</h3>
+                <p>Elegantly furnished living areas with comfortable seating, tasteful decor, and all the comforts of home.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>24-Hour Power</h3>
+                <p>Reliable electricity supply throughout your stay, ensuring comfort and convenience at all times.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>24-Hour Security</h3>
+                <p>Round-the-clock security personnel and CCTV surveillance for your complete peace of mind.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Estate Living</h3>
+                <p>Experience the benefits of secure estate living with well-maintained surroundings and community amenities.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Serene Environment</h3>
+                <p>Peaceful and tranquil surroundings that provide the perfect escape from the city's hustle and bustle.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <h3>House Keeping</h3>
+                <p>Regular professional cleaning services to maintain the pristine condition of your apartment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background-color: white; text-align: center;">
+        <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem;">Ready to Experience Luxury?</h2>
+        <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 2.5rem; color: #777;">Book your stay at ILHAM SUITES and discover why we're Abuja's preferred choice for luxury service apartments.</p>
+        <a href="contact.html" class="cta-button" style="width: auto; display: inline-block; padding: 1rem 3rem;"><span class="button-text">Book Your Stay Now</span></a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">ILHAM <span>SUITES</span></div>
+        <p class="footer-text">Premium luxury service apartments in the heart of Abuja, offering unparalleled comfort and exceptional service for discerning travelers.</p>
+        
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About</a>
+            <a href="rooms.html" class="footer-link">Rooms</a>
+            <a href="gallery.html" class="footer-link">Gallery</a>
+            <a href="amenities.html" class="footer-link">Amenities</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+        
+        <p class="copyright">&copy; 2023 ILHAM SUITES. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Simple room availability check
+        document.addEventListener('DOMContentLoaded', function() {
+            const roomBadges = document.querySelectorAll('.room-badge');
+            
+            // Simulate checking room availability (in a real app, this would be an API call)
+            function checkAvailability() {
+                // For demo purposes, randomly set some rooms as unavailable
+                roomBadges.forEach(badge => {
+                    if (Math.random() > 0.7) { // 30% chance of being unavailable
+                        badge.textContent = 'Booked';
+                        badge.style.backgroundColor = '#777';
+                    }
+                });
+            }
+            
+            // Check availability after a short delay to simulate API call
+            setTimeout(checkAvailability, 1000);
+        });
+    </script>
+</body>
+</html>
