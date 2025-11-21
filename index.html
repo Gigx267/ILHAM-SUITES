@@ -1,0 +1,1214 @@
+
+<!-- Background Music Player -->
+<audio id="bgMusic" loop>
+    <source src="mm.mp3" type="audio/mpeg">
+    <source src="mm.mp3" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    // Wait for the page to fully load
+    window.addEventListener('load', function() {
+        const bgMusic = document.getElementById('bgMusic');
+        
+        // Try to play the music automatically
+        const playPromise = bgMusic.play();
+        
+        // Handle autoplay restrictions
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Autoplay prevented:", error);
+                // Create a fallback play button
+                createMusicControls();
+            });
+        }
+    });
+    
+    // Create visible controls if autoplay is blocked
+    function createMusicControls() {
+        const musicControls = document.createElement('div');
+        musicControls.id = 'music-controls';
+        musicControls.innerHTML = `
+            <button id="playMusicBtn">▶ Play Background Music</button>
+            <button id="muteMusicBtn">🔇 Mute</button>
+        `;
+        musicControls.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(10, 20, 22, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--teal-primary);
+        `;
+        
+        document.body.appendChild(musicControls);
+        
+        document.getElementById('playMusicBtn').addEventListener('click', function() {
+            document.getElementById('bgMusic').play();
+            musicControls.style.display = 'none';
+        });
+        
+        document.getElementById('muteMusicBtn').addEventListener('click', function() {
+            musicControls.style.display = 'none';
+        });
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ILHAM SUITES - Luxury Service Apartments in Abuja, Nigeria">
+    <title>ILHAM SUITES | Luxury Service Apartments Abuja</title>
+    <link rel="icon" href="sa (2).jpg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B38B2D;
+            --ivory: #F8F4E9;
+            --charcoal: #333333;
+            --soft-gray: #E8E8E8;
+            --light-gray: #f8f8f8;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(248, 244, 233, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .main-nav a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle,
+        .menu-icon {
+            display: none;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .hero-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            padding: 0 5%;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero-text {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--gold);
+            color: white;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--dark-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+        
+        .cta-button:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .cta-button:hover {
+            color: white;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 8rem 5%;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: var(--light-gray);
+        }
+        
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .about-text a {
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .about-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            background-color: var(--ivory);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-caption {
+            color: white;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Amenities Section */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .amenity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--soft-gray);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .amenity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .amenity-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .amenity-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+        
+        .amenity-card p {
+            color: #777;
+            line-height: 1.6;
+        }
+        
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .value-card p {
+            color: #777;
+            line-height: 1.7;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: white;
+        }
+        
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info,
+        .contact-form {
+            background-color: var(--ivory);
+            padding: 2rem;
+        }
+        
+        .contact-info h3,
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-detail {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+        
+        .contact-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-text p,
+        .contact-text a {
+            font-size: 0.95rem;
+            color: #777;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--soft-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--gold);
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--soft-gray);
+            background-color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--charcoal);
+            color: white;
+            padding: 3rem 5% 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo span {
+            color: var(--gold);
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #777;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Map Section */
+        .map-section {
+            margin-top: 4rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-section iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 2px solid var(--soft-gray);
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+        
+        .pricing-badge {
+            display: inline-block;
+            background-color: var(--light-gray);
+            color: var(--charcoal);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-badge.featured-badge {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            color: white;
+        }
+        
+        .pricing-amount {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .pricing-card.featured .pricing-amount {
+            color: var(--gold);
+        }
+        
+        .pricing-period {
+            color: #777;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .save-text {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(179, 139, 45, 0.1));
+            color: var(--dark-gold);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: #666;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--soft-gray);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features i {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        .featured-btn {
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold)) !important;
+        }
+        
+        .featured-btn::before {
+            background: rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            
+            .menu-icon .bar {
+                width: 25px;
+                height: 2px;
+                background-color: var(--charcoal);
+                margin: 5px 0;
+                transition: var(--transition);
+            }
+            
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--ivory);
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                padding-top: 80px;
+                z-index: 999;
+            }
+            
+            .menu-toggle:checked ~ .main-nav {
+                right: 0;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 0 2rem;
+            }
+            
+            .main-nav li {
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 5%;
+            }
+            
+            .about-wrapper,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .amenities-grid,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-grid {
+                gap: 1.5rem;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 1rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">ILHAM <span>SUITES</span></div>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </label>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#amenities">Amenities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <video autoplay muted loop playsinline>
+                <source src="b.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-content">
+            <p class="hero-subtitle">BLOCK H, Cherryview Apartments. Gudu, Abuja</p>
+            <h1 class="hero-title">Unwind in Luxury</h1>
+            <p class="hero-text">Welcome to a space designed for your comfort. Experience premium comfort in our meticulously designed service apartments, where every detail is crafted for your perfect stay.</p>
+            <a href="#contact" class="cta-button">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="section-header">
+            <h2 class="section-title">About Us</h2>
+        </div>
+        
+        <div class="about-wrapper">
+            <div class="about-text">
+                <p>Welcome to a space designed with your comfort in mind. From cozy furniture to warm tones and ambiance, Ilham Suites is where relaxation truly begins. Step in, take a breath, and feel at home.</p>
+                <p>Modern amenities and personalized service ensure every detail—from high-speed Wi-Fi to plush bedding—contributes to your perfect stay. We're offering more than an apartment; we're offering a serene retreat where you can truly unwind and focus on what matters most.</p>
+                <a href="#contact" class="cta-button">Book A Stay</a>
+            </div>
+            <img src="logo.jpg" alt="Luxury Apartment Interior" class="about-image">
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Apartments Gallery</h2>
+            <p class="section-subtitle">Explore our beautifully designed spaces and premium facilities</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="p (1).jpeg" alt="Luxury Living Room">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Elegant Living Spaces</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (2).jpeg" alt="Modern Kitchen">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Fully Equipped Kitchen</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (3).jpeg" alt="Comfortable Bedroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Luxurious Bedrooms</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (4).jpeg" alt="Swimming Pool">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Refreshing Pool Area</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (15).jpeg" alt="Bathroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Modern Bathrooms</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (14).jpeg" alt="Building Exterior">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Secure Premises</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Our Amenities</h2>
+            <p class="section-subtitle">Experience unparalleled comfort and convenience with our top-notch amenities</p>
+        </div>
+        
+        <div class="amenities-grid">
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h3>High-Speed WiFi</h3>
+                <p>Stay connected with complimentary high-speed internet throughout your stay.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-swimming-pool"></i>
+                </div>
+                <h3>House Keeping</h3>
+                <p>Professional cleaning and maintenance services to keep your space pristine.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>24 Hours Light</h3>
+                <p>Reliable power supply ensuring comfort throughout your entire stay.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Serene Environment</h3>
+                <p>Round-the-clock security and CCTV surveillance for your peace of mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" style="background-color: var(--light-gray);">
+        <div class="section-header">
+            <h2 class="section-title">Our Pricing</h2>
+            <p class="section-subtitle">Affordable luxury accommodations with transparent pricing</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-badge">Weekday</div>
+                <div class="pricing-amount">₦70,000</div>
+                <p class="pricing-period">Per Night (Mon - Thu)</p>
+                
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> High-Speed WiFi</li>
+                    <li><i class="fas fa-check"></i> Housekeeping Service</li>
+                    <li><i class="fas fa-check"></i> 24/7 Security</li>
+                    <li><i class="fas fa-check"></i> Climate Control</li>
+                    <li><i class="fas fa-check"></i> Fully Equipped Kitchen</li>
+                </ul>
+                
+                <a href="tel:08067278236" class="cta-button" style="width: 100%; text-align: center;">Book Now</a>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="pricing-badge featured-badge">Weekend Special</div>
+                <div class="pricing-amount featured-amount">₦60,000</div>
+                <p class="pricing-period">Per Night (Fri - Sun)</p>
+                
+                <p class="save-text">Save ₦10,000</p>
+                
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> High-Speed WiFi</li>
+                    <li><i class="fas fa-check"></i> Housekeeping Service</li>
+                    <li><i class="fas fa-check"></i> 24/7 Security</li>
+                    <li><i class="fas fa-check"></i> Climate Control</li>
+                    <li><i class="fas fa-check"></i> Fully Equipped Kitchen</li>
+                </ul>
+                
+                <a href="tel:08067278236" class="cta-button featured-btn" style="width: 100%; text-align: center;">Book Now</a>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="color: #777; font-size: 0.95rem; margin-bottom: 1rem;">📞 For bulk bookings and long-term stays, call us for special rates</p>
+            <a href="tel:08067278236" style="color: var(--gold); font-weight: 600; font-size: 1.1rem;">08067278236</a>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section" style="background-color: white;">
+        <div class="section-header">
+            <h2 class="section-title">Our Commitment</h2>
+            <p class="section-subtitle">The principles that guide every aspect of your stay</p>
+        </div>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3>Luxury</h3>
+                <p>Premium accommodations with elegant furnishings and high-end amenities for an exceptional stay.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safety</h3>
+                <p>Your security is our priority with 24/7 surveillance, secure access, and professional personnel.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-concierge-bell"></i>
+                </div>
+                <h3>Comfort</h3>
+                <p>Every apartment is designed for maximum comfort with premium bedding and climate control.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Service</h3>
+                <p>Our dedicated team is committed to personalized service for a flawless stay.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="section-header">
+            <h2 class="section-title">Book Your Stay</h2>
+            <p class="section-subtitle">Contact us for reservations and inquiries</p>
+        </div>
+        
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Please Call Us</h3>
+                
+                <div class="contact-detail" style="justify-content: center; text-align: center;">
+                    <div class="contact-icon" style="font-size: 2.5rem;"><i class="fas fa-phone"></i></div>
+                </div>
+                
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <p style="font-size: 1.5rem; font-weight: 600; color: var(--gold); margin-bottom: 0.5rem;">
+                        <a href="tel:08067278236" style="color: var(--gold);">08067278236</a>
+                    </p>
+                    <p style="color: #777; font-size: 0.95rem;">Call us to book your stay directly</p>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-text">
+                        <h4>Location</h4>
+                        <p>BLOCK H, Cherryview Apartments, Gudu, Abuja, Nigeria</p>
+                    </div>
+                </div>
+                
+                <div class="contact-detail">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div class="contact-text">
+                        <h4>Check-in/Check-out</h4>
+                        <p>Check-in: 2:00 PM | Check-out: 12:00 PM</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Send Us An Inquiry</h3>
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Phone Number" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <select class="form-control" name="apartment_type">
+                            <option value="" disabled selected>Apartment Type</option>
+                            <option>Studio Apartment</option>
+                            <option>One-Bedroom Suite</option>
+                            <option>Two-Bedroom Apartment</option>
+                            <option>Executive Suite</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="date" class="form-control" placeholder="Check-in Date" name="checkin_date">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="date" class="form-control" placeholder="Check-out Date" name="checkout_date">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Special Requests" name="message"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="cta-button">Send to ilhamsuites@gmail.com</button>
+                </form>
+            </div>

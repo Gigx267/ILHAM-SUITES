@@ -1,0 +1,1025 @@
+
+<!-- Background Music Player -->
+<audio id="bgMusic" loop>
+    <source src="mm.mp3" type="audio/mpeg">
+    <source src="mm.mp3" type="audio/ogg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    // Wait for the page to fully load
+    window.addEventListener('load', function() {
+        const bgMusic = document.getElementById('bgMusic');
+        
+        // Try to play the music automatically
+        const playPromise = bgMusic.play();
+        
+        // Handle autoplay restrictions
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Autoplay prevented:", error);
+                // Create a fallback play button
+                createMusicControls();
+            });
+        }
+    });
+    
+    // Create visible controls if autoplay is blocked
+    function createMusicControls() {
+        const musicControls = document.createElement('div');
+        musicControls.id = 'music-controls';
+        musicControls.innerHTML = `
+            <button id="playMusicBtn">▶ Play Background Music</button>
+            <button id="muteMusicBtn">🔇 Mute</button>
+        `;
+        musicControls.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(10, 20, 22, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--teal-primary);
+        `;
+        
+        document.body.appendChild(musicControls);
+        
+        document.getElementById('playMusicBtn').addEventListener('click', function() {
+            document.getElementById('bgMusic').play();
+            musicControls.style.display = 'none';
+        });
+        
+        document.getElementById('muteMusicBtn').addEventListener('click', function() {
+            musicControls.style.display = 'none';
+        });
+    }
+</script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about ILHAM SUITES - Luxury Service Apartments in Abuja, Nigeria">
+    <title>About Us | ILHAM SUITES | Luxury Service Apartments Abuja</title>
+    <link rel="icon" href="sa (2).jpg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B38B2D;
+            --ivory: #F8F4E9;
+            --charcoal: #333333;
+            --soft-gray: #E8E8E8;
+            --light-gray: #f8f8f8;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--ivory);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(248, 244, 233, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .main-nav a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle,
+        .menu-icon {
+            display: none;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            height: 50vh;
+            min-height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .page-banner-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .page-banner-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .page-banner-background::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+        
+        .page-banner-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+            padding: 0 5%;
+        }
+        
+        .page-banner-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .page-breadcrumb a:hover {
+            color: var(--gold);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 8rem 5%;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* About Story Section */
+        .about-story {
+            background-color: var(--light-gray);
+        }
+        
+        .about-story-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        
+        .about-story-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .about-story-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .team-member-image {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .team-member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .team-member:hover .team-member-image img {
+            transform: scale(1.05);
+        }
+        
+        .team-member-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .team-member-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+        
+        .team-member-role {
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .team-member-bio {
+            color: #777;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .value-card p {
+            color: #777;
+            line-height: 1.7;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--light-gray);
+        }
+        
+        .testimonials-slider {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin: 0 1rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .testimonial-text::before {
+            top: -1rem;
+            left: -1rem;
+        }
+        
+        .testimonial-text::after {
+            bottom: -2rem;
+            right: -1rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .testimonial-author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .testimonial-author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--charcoal);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .stat-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--gold);
+            color: white;
+            text-align: center;
+            padding: 6rem 5%;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: white;
+            color: var(--gold);
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--charcoal);
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--charcoal);
+            color: white;
+            padding: 3rem 5% 1.5rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo span {
+            color: var(--gold);
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .footer-link:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: #777;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            
+            .menu-icon .bar {
+                width: 25px;
+                height: 2px;
+                background-color: var(--charcoal);
+                margin: 5px 0;
+                transition: var(--transition);
+            }
+            
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 280px;
+                height: 100vh;
+                background-color: var(--ivory);
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                padding-top: 80px;
+                z-index: 999;
+            }
+            
+            .menu-toggle:checked ~ .main-nav {
+                right: 0;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 0 2rem;
+            }
+            
+            .main-nav li {
+                margin-bottom: 1.5rem;
+            }
+            
+            .page-banner-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 5%;
+            }
+            
+            .about-story-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 1rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .page-banner-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .testimonial {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">ILHAM <span>SUITES</span></div>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </label>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="amenities.html">Amenities</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="page-banner-background">
+            <img src="logo.jpg" alt="Luxury Living Room">
+        </div>
+        <div class="page-banner-content">
+            <h1 class="page-banner-title">About ILHAM SUITES</h1>
+            <div class="page-breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>About Us</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Story Section -->
+    <section class="section about-story">
+        <div class="section-header">
+            <h2 class="section-title">Our Story</h2>
+            <p class="section-subtitle">Discover the journey behind Abuja's premier luxury service apartments</p>
+        </div>
+        
+        <div class="about-story-wrapper">
+            <div class="about-story-text">
+                <p>Founded with a vision to redefine luxury accommodation in Abuja, ILHAM SUITES emerged from a desire
+                     to create spaces where travelers could experience the perfect blend of comfort, elegance, and personalized service.</p>
+                <p>Our name, "ILHAM," meaning inspiration in Arabic, reflects our commitment to creating
+                     inspiring environments where guests can relax, rejuvenate, and focus on what matters most to them.</p>
+                <p>Located in the prestigious Cherryview Apartments in Gudu, we've carefully designed
+                     each apartment to offer more than just a place to stay. From the thoughtfully selected
+                      furnishings to the premium amenities, every detail has been curated to ensure an exceptional experience.</p>
+                <p>Today, ILHAM SUITES stands as a testament to our dedication to excellence, 
+                    serving discerning travelers who appreciate the finer things in life without compromising on comfort and convenience.</p>
+            </div>
+            <img src="logo.jpg" alt="ILHAM SUITES Building" class="about-story-image">
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Our Values</h2>
+            <p class="section-subtitle">The principles that guide every aspect of your stay</p>
+        </div>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3>Luxury</h3>
+                <p>Premium accommodations with elegant furnishings and high-end amenities for an exceptional stay.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safety</h3>
+                <p>Your security is our priority with 24/7 surveillance, secure access, and professional personnel.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-concierge-bell"></i>
+                </div>
+                <h3>Comfort</h3>
+                <p>Every apartment is designed for maximum comfort with premium bedding and climate control.</p>
+            </div>
+            
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Service</h3>
+                <p>Our dedicated team is committed to personalized service for a flawless stay.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery-section">
+        <div class="section-header">
+            <h2 class="section-title">Our Apartments Gallery</h2>
+            <p class="section-subtitle">Explore our beautifully designed spaces and premium facilities</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="p (1).jpeg" alt="Luxury Living Room">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Elegant Living Spaces</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (2).jpeg" alt="Modern Kitchen">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Fully Equipped Kitchen</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (3).jpeg" alt="Comfortable Bedroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Luxurious Bedrooms</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (4).jpeg" alt="Swimming Pool">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Refreshing Pool Area</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (15).jpeg" alt="Bathroom">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Modern Bathrooms</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="p (14).jpeg" alt="Building Exterior">
+                <div class="gallery-overlay">
+                    <div class="gallery-caption">
+                        <h3>Secure Premises</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Our Amenities</h2>
+            <p class="section-subtitle">Experience unparalleled comfort and convenience with our top-notch amenities</p>
+        </div>
+        
+        <div class="amenities-grid">
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h3>High-Speed WiFi</h3>
+                <p>Stay connected with complimentary high-speed internet throughout your stay.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-swimming-pool"></i>
+                </div>
+                <h3>House Keeping</h3>
+                <p>Professional cleaning and maintenance services to keep your space pristine.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>24 Hours Light</h3>
+                <p>Reliable power supply ensuring comfort throughout your entire stay.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Serene Environment</h3>
+                <p>Round-the-clock security and CCTV surveillance for your peace of mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" style="background-color: var(--light-gray);">
+        <div class="section-header">
+            <h2 class="section-title">Our Pricing</h2>
+            <p class="section-subtitle">Affordable luxury accommodations with transparent pricing</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-badge">Weekday</div>
+                <div class="pricing-amount">₦70,000</div>
+                <p class="pricing-period">Per Night (Mon - Thu)</p>
+                
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> High-Speed WiFi</li>
+                    <li><i class="fas fa-check"></i> Housekeeping Service</li>
+                    <li><i class="fas fa-check"></i> 24/7 Security</li>
+                    <li><i class="fas fa-check"></i> Climate Control</li>
+                    <li><i class="fas fa-check"></i> Fully Equipped Kitchen</li>
+                </ul>
+                
+                <a href="tel:08067278236" class="cta-button" style="width: 100%; text-align: center;">Book Now</a>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="pricing-badge featured-badge">Weekend Special</div>
+                <div class="pricing-amount featured-amount">₦60,000</div>
+                <p class="pricing-period">Per Night (Fri - Sun)</p>
+                
+                <p class="save-text">Save ₦10,000</p>
+                
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> High-Speed WiFi</li>
+                    <li><i class="fas fa-check"></i> Housekeeping Service</li>
+                    <li><i class="fas fa-check"></i> 24/7 Security</li>
+                    <li><i class="fas fa-check"></i> Climate Control</li>
+                    <li><i class="fas fa-check"></i> Fully Equipped Kitchen</li>
+                </ul>
+                
+                <a href="tel:08067278236" class="cta-button featured-btn" style="width: 100%; text-align: center;">Book Now</a>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="color: #777; font-size: 0.95rem; margin-bottom: 1rem;">📞 For bulk bookings and long-term stays, call us for special rates</p>
+            <a href="tel:08067278236" style="color: var(--gold); font-weight: 600; font-size: 1.1rem;">08067278236</a>
+        </div>
+    </section>
+
+   
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Experience Luxury Living</h2>
+        <p>Book your stay at ILHAM SUITES and discover why we're Abuja's preferred choice for luxury service apartments.</p>
+        <a href="contact.html" class="cta-button">Book Your Stay</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">ILHAM <span>SUITES</span></div>
+        <p class="footer-text">Premium luxury service apartments in the heart of Abuja, offering unparalleled comfort and exceptional service for discerning travelers.</p>
+        
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About</a>
+            <a href="gallery.html" class="footer-link">Gallery</a>
+            <a href="amenities.html" class="footer-link">Amenities</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+        </div>
+        
+        <p class="copyright">&copy; 2023 ILHAM SUITES. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Simple testimonial slider
+        document.addEventListener('DOMContentLoaded', function() {
+            const testimonials = [
+                {
+                    text: "My stay at ILHAM SUITES was absolutely exceptional. The attention to detail in the apartment design and the impeccable service made my business trip feel like a luxury vacation. I'll definitely be returning on my next visit to Abuja.",
+                    author: "Adebayo Johnson",
+                    role: "Business Executive"
+                },
+                {
+                    text: "As a frequent traveler to Abuja, I've stayed in many apartments, but ILHAM SUITES stands out for its perfect blend of luxury and comfort. The location is ideal, and the amenities are top-notch. Highly recommended for both business and leisure travelers.",
+                    author: "Chioma Okonkwo",
+                    role: "Corporate Consultant"
+                },
+                {
+                    text: "We booked ILHAM SUITES for a month while relocating to Abuja, and it felt like home from day one. The staff went above and beyond to ensure our comfort, and the apartments are beautifully appointed with everything you could possibly need.",
+                    author: "The Williams Family",
+                    role: "Relocating Family"
+                }
+            ];
+            
+            let currentTestimonial = 0;
+            const testimonialElement = document.querySelector('.testimonial');
+            
+            function rotateTestimonials() {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                const testimonial = testimonials[currentTestimonial];
+                
+                testimonialElement.innerHTML = `
+                    <p class="testimonial-text">${testimonial.text}</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <h4>${testimonial.author}</h4>
+                            <p>${testimonial.role}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Rotate testimonials every 8 seconds
+            setInterval(rotateTestimonials, 8000);
+        });
+    </script>
+</body>
+</html>
